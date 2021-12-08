@@ -1,0 +1,9 @@
+app:
+    ui:
+        suppliers: "Fournisseurs bitch"
+        supplier: "Fournisseur bitch"
+        videogames: "Jeux bitch"
+        new_videogame: "Nouveau jeu"
+sylius:
+    ui:
+        hardware: "console"

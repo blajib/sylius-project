@@ -1,0 +1,8 @@
+sylius_mailer:
+    sender: 
+        name: SyliusOnlineCourseAdmin admin
+        address: bloblo@babe.com
+    emails:
+        app_supplier_trusted:
+            subject: "You've been a trusted bitch !"
+            template: "Supplier/Email/supplierTrusted.html.twig"

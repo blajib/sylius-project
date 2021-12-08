@@ -1,0 +1,11 @@
+sylius_resource:
+    resources:
+        app.supplier:
+            classes:
+                model: App\Entity\Supplier
+                form: App\Form\Type\SupplierType
+        app.videogame:
+            classes:
+                model: App\Entity\VideoGame
+                
+

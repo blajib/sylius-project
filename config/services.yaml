@@ -39,14 +39,63 @@ services:
             - '@sylius.repository.channel'
             - '@App\DateTime\Clock'
         tags:
-            - { name: sylius.context.channel, priority: 1000}
-                
+            - { name: sylius.context.channel, priority: 1000 }
+
     App\ShippingCalculator\WeightBasedShippingCalculator:
         tags:
-            -
-              {
-                  name: sylius.shipping_calculator,
-                  calculator: 'weight_based',
-                  form_type: 'App\Form\Type\WeightBasedShippingCalculatorType',
-                  label: 'Weight-based'
-              }
+            - {
+                name: sylius.shipping_calculator,
+                calculator: 'weight_based',
+                form_type: 'App\Form\Type\WeightBasedShippingCalculatorType',
+                label: 'Weight-based'
+            }
+
+    App\Menu\AdminMainMenuListener:
+        tags:
+            - {
+                name: kernel.event_listener,
+                event: sylius.menu.admin.main,
+                method: addSupplierMenu
+            }
+                
+    App\Form\Type\SupplierType:
+        arguments:
+            - '%app.model.supplier.class%'
+    
+    App\Notifier\SupplierTrustingNotifierInterface:
+        #class: App\Notifier\LogSupplierTrustingNotifier
+        class: App\Notifier\EmailSupplierTrustingNotifier
+        public: true
+    
+    App\Listener\ReviewCreationListener:
+        arguments:
+            - '@sm.factory'
+        tags:
+            - {
+                  name: kernel.event_listener,
+                  event: sylius.product_review.pre_create,
+                  method: acceptForTrustedAuthor
+            }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
